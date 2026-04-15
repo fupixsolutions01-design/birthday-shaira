@@ -322,8 +322,8 @@
 
             <div id="surprise-container">
                 <div class="surprise-text">
-                    You are an incredibly gorgeous and special woman, Shaira! 🌸<br><br>
-                    May this year bring you endless success, radiant health, and unforgettable moments. Keep shining your beautiful light on the world and never stop being your wonderful self. Here's to an amazing new chapter! 🥂✨
+                    Happy Birthday, Shaira! 🎉<br><br>
+                    Even though we don’t get to see each other that often because life gets busy, I’m really glad we still find time to catch up every now and then. Wishing you a day filled with happiness, laughter, and all the things that make you smile. You deserve nothing but good things this year and always. 💖
                 </div>
             </div>
         </div>
@@ -331,7 +331,7 @@
 
     <script>
         // --- Typing Animation ---
-        const message = "Wishing you a spectacular day filled with love, laughter, and endless joy. May all your beautiful dreams take flight today and always! 💖";
+        const message = "Happy Birthday, Shaira! Wishing you a day filled with happiness, laughter, and all the things that make you smile. 💖";
         const typingText = document.getElementById("typing-text");
         let charIndex = 0;
 
@@ -339,7 +339,7 @@
             if (charIndex < message.length) {
                 typingText.textContent += message.charAt(charIndex);
                 charIndex++;
-                setTimeout(typeWriter, 40); // Slightly faster typing
+                setTimeout(typeWriter, 40);
             } else {
                 setTimeout(() => {
                     typingText.style.borderRight = "none";
@@ -370,18 +370,15 @@
                 this.y = y;
                 this.color = color;
                 const angle = Math.random() * Math.PI * 2;
-                
-                // NEW: FASTER PARTICLES
-                const speedScale = isMobile ? 0.9 : 1.1; 
+                const speedScale = isMobile ? 0.9 : 1.1;
                 const speed = (Math.random() * 8 + 3) * speedScale;
-                
+
                 this.velocity = {
                     x: Math.cos(angle) * speed,
                     y: Math.sin(angle) * speed
                 };
                 this.alpha = 1;
-                // NEW: Lower friction so particles fly further out
-                this.friction = 0.95; 
+                this.friction = 0.95;
                 this.gravity = 0.12;
                 this.decay = Math.random() * 0.015 + 0.012;
                 this.radius = isMobile ? 1.5 : 2.5;
@@ -415,11 +412,10 @@
                 this.y = startY !== undefined ? startY : canvas.height + 10;
                 this.targetX = targetX !== undefined ? targetX : this.x + (Math.random() - 0.5) * (canvas.width * 0.7);
                 this.targetY = targetY !== undefined ? targetY : Math.random() * (canvas.height * 0.5);
-                
-                // NEW: FASTER ROCKETS
+
                 const speedScale = isMobile ? 1.0 : 1.2;
                 this.speed = (6 + Math.random() * 6) * speedScale;
-                
+
                 const angle = Math.atan2(this.targetY - this.y, this.targetX - this.x);
                 this.velocity = {
                     x: Math.cos(angle) * this.speed,
@@ -436,7 +432,7 @@
                     ctx.save();
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, isMobile ? 2.5 : 3.5, 0, Math.PI * 2);
-                    ctx.fillStyle = '#fff'; // White core for better visibility
+                    ctx.fillStyle = '#fff';
                     ctx.shadowBlur = 15;
                     ctx.shadowColor = this.color;
                     ctx.fill();
@@ -458,18 +454,15 @@
 
         let fireworks = [];
         let particles = [];
-        // NEW: MORE FIREWORKS BY DEFAULT
         let intensity = isMobile ? 0.06 : 0.08;
 
         function createParticles(x, y, color) {
-            // NEW: MUCH BIGGER BURSTS
             const count = isMobile ? (70 + Math.random() * 40) : (120 + Math.random() * 60);
             for (let i = 0; i < count; i++) {
                 particles.push(new Particle(x, y, color));
             }
         }
 
-        // NEW: REMOVED FRAME LIMITER. Uses native screen refresh rate (60Hz/120Hz smooth)
         function animate() {
             requestAnimationFrame(animate);
 
@@ -493,7 +486,6 @@
             }
         }
 
-        // Start native animation
         requestAnimationFrame(animate);
 
         // --- Reveal Surprise ---
@@ -505,13 +497,11 @@
                 container.classList.add("show");
                 btn.style.display = "none";
 
-                // NEW: MORE ROCKETS FIRE AT ONCE WHEN CLICKED
                 const burstCount = isMobile ? 12 : 20;
                 for (let i = 0; i < burstCount; i++) {
                     setTimeout(() => fireworks.push(new Firework()), i * 100);
                 }
 
-                // NEW: KEEPS BACKGROUND FIREWORKS HIGHER FOREVER
                 intensity = isMobile ? 0.12 : 0.18;
             }
         }
@@ -530,7 +520,6 @@
             document.body.appendChild(effect);
             setTimeout(() => effect.remove(), 1200);
 
-            // Trigger manual firework aimed at tap location
             const fw = new Firework(
                 clientX,
                 canvas.height,
